@@ -30,7 +30,7 @@ jobs:
         env:
           NEXT_PUBLIC_API_URL: ${{ secrets.NEXT_PUBLIC_API_URL }}
         with:
-          name: broadcast-storm/portal-frontend/portal-frontend
+          name: stud-esports/portal-frontend/portal-frontend
           registry: ghcr.io
           username: ${{ secrets.USERNAME }}
           password: ${{ secrets.GITHUB_TOKEN }}
@@ -51,7 +51,7 @@ jobs:
           envs: GITHUB_USERNAME, GITHUB_TOKEN
           script: |
             docker login ghcr.io -u $GITHUB_USERNAME -p $GITHUB_TOKEN
-            docker pull ghcr.io/broadcast-storm/portal-frontend/portal-frontend:latest
+            docker pull ghcr.io/stud-esports/portal-frontend/portal-frontend:latest
             docker stop containername
             docker system prune -f
-            docker run --name containername -dit -p 3000:3000 ghcr.io/broadcast-storm/portal-frontend/portal-frontend:latest
+            docker run --name containername -dit -p 3000:3000 ghcr.io/stud-esports/portal-frontend/portal-frontend:latest
