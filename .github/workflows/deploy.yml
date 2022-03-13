@@ -52,6 +52,6 @@ jobs:
           script: |
             docker login ghcr.io -u $GITHUB_USERNAME -p $GITHUB_TOKEN
             docker pull ghcr.io/stud-esports/portal-frontend/portal-frontend:latest
-            docker stop containername
+            docker stop portal-frontend
             docker system prune -f
-            docker run --name containername -dit -p 3000:3000 ghcr.io/stud-esports/portal-frontend/portal-frontend:latest
+            docker run --name portal-frontend -dit -p 3000:3000 ghcr.io/stud-esports/portal-frontend/portal-frontend:latest
