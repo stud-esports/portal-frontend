@@ -28,7 +28,7 @@ export const MainHeader: FC = () => {
   return (
     <PageHeader
       className={styles['page-header']}
-      title={<Text className={styles['page-header__title']}>CyberSport</Text>}
+      title={<Text className={styles['page-header__title']}>Stud Esports</Text>}
       backIcon={false}
       extra={[
         <Text key="0" className={styles['page-header__user-name']}>
