@@ -1,5 +1,6 @@
 import { UserOutlined } from '@ant-design/icons';
 import { Avatar, Button, PageHeader, Popover, Typography } from 'antd';
+import Link from 'next/link';
 import { FC, useState } from 'react';
 
 import styles from './styles.module.scss';
@@ -31,12 +32,18 @@ export const MainHeader: FC = () => {
       title={<Text className={styles['page-header__title']}>Stud Esports</Text>}
       backIcon={false}
       extra={[
-        <Text key="0" className={styles['page-header__user-name']}>
+        <Link href="/" key="0">
+          <a className={styles['page-header__link']}>Главная</a>
+        </Link>,
+        <Link href="/forum" key="1">
+          <a className={styles['page-header__link']}>Форум</a>
+        </Link>,
+        <Text key="2" className={styles['page-header__user-name']}>
           Пользователь
         </Text>,
 
         <Popover
-          key="1"
+          key="3"
           content={Menu}
           title={<Text strong>Инфо</Text>}
           placement="bottom"
