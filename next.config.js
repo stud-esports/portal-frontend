@@ -1,12 +1,20 @@
+/* eslint-disable @typescript-eslint/no-var-requires */
 // @ts-check
-
 /**
  * @type {import('next').NextConfig}
  **/
-const nextConfig = {
+
+const withAntdLess = require('next-plugin-antd-less');
+
+module.exports = withAntdLess({
+  lessVarsFilePath: './src/styles/antd.less',
+  lessVarsFilePathAppendToEndOfContent: false,
+
   experimental: {
     outputStandalone: true,
   },
-};
 
-module.exports = nextConfig;
+  webpack(config) {
+    return config;
+  },
+});

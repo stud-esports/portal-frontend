@@ -1,6 +1,6 @@
 import '../styles/normalize.css';
 import '../styles/globals.css';
-import 'antd/dist/antd.min.css';
+import '../styles/antd.less';
 
 import type { AppProps } from 'next/app';
 import { Provider } from 'react-redux';
