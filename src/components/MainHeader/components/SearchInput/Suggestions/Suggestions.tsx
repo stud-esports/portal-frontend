@@ -10,6 +10,7 @@ import {
 } from '../../../../../constants/SuggestionCategories';
 import { MenuCLickHandler } from '../../../../../types/antd.components.types';
 import { Counter } from './components/Counter';
+import { Results } from './components/Results';
 import styles from './styles.module.scss';
 
 interface Props {
@@ -62,6 +63,7 @@ export const Suggestions: FC<Props> = (props) => {
               </Menu.Item>
             ))}
           </Menu>
+          <Results />
         </div>
       </AppearFromTop>
     </div>
