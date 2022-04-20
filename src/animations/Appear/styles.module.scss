@@ -1,0 +1,16 @@
+.block-show-active {
+  animation: appear .2s forwards;
+}
+
+.block-hide-active {
+  animation: appear .2s reverse;
+}
+
+@keyframes appear {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}

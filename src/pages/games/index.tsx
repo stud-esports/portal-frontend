@@ -2,8 +2,8 @@ import type { NextPage } from 'next';
 
 import { InDevelopment } from '../../components/PlugScreens/InDevelopment';
 
-const Forum: NextPage = () => {
+const Games: NextPage = () => {
   return <InDevelopment />;
 };
 
-export default Forum;
+export default Games;

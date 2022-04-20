@@ -1,0 +1,18 @@
+.block-enter-active {
+  animation: appear-from-top .3s forwards;
+}
+
+.block-exit-active {
+  animation: appear-from-top .3s reverse;
+}
+
+@keyframes appear-from-top {
+  0% {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

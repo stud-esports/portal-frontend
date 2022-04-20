@@ -1,61 +1,50 @@
-import { UserOutlined } from '@ant-design/icons';
-import { Avatar, Button, PageHeader, Popover, Typography } from 'antd';
-import Link from 'next/link';
+import { MenuOutlined, UserOutlined } from '@ant-design/icons';
+import { Avatar, PageHeader } from 'antd';
+import classNames from 'classnames';
 import { FC, useState } from 'react';
+import { useScrollData } from 'scroll-data-hook';
 
+import { Appear } from '../../animations';
+import { Logo, Navigation, SearchInput } from './components';
 import styles from './styles.module.scss';
 
-const { Text } = Typography;
-
-const Menu: FC = () => {
-  return (
-    <div>
-      <Button
-        onClick={() => {
-          console.log('log out fetch');
-        }}>
-        Выйти
-      </Button>
-    </div>
-  );
-};
-
 export const MainHeader: FC = () => {
-  const [showPopover, setShowPopover] = useState(false);
-  const handleVisibleChange = (visible: boolean) => {
-    setShowPopover(visible);
-  };
+  const [showBackground, setShowBackground] = useState(false);
+  const { position } = useScrollData();
 
   return (
-    <PageHeader
-      className={styles['page-header']}
-      title={<Text className={styles['page-header__title']}>Stud Esports</Text>}
-      backIcon={false}
-      extra={[
-        <Link href="/" key="0">
-          <a className={styles['page-header__link']}>Главная</a>
-        </Link>,
-        <Link href="/forum" key="1">
-          <a className={styles['page-header__link']}>Форум</a>
-        </Link>,
-        <Text key="2" className={styles['page-header__user-name']}>
-          Пользователь
-        </Text>,
+    <>
+      <Appear show={showBackground}>
+        <div className={styles['header-background']} />
+      </Appear>
 
-        <Popover
-          key="3"
-          content={Menu}
-          title={<Text strong>Инфо</Text>}
-          placement="bottom"
-          trigger="click"
-          visible={showPopover}
-          onVisibleChange={handleVisibleChange}>
+      <PageHeader
+        className={classNames(
+          styles['page-header'],
+          position.y > 0 ? styles['page-header_bg-dark'] : null,
+        )}
+        title={<Logo className={styles['page-header__logo']} />}
+        subTitle={
+          <SearchInput
+            className={classNames(
+              styles['page-header__search-input'],
+              styles['mobile-hidden'],
+            )}
+            handleBackground={setShowBackground}
+          />
+        }
+        onBack={() => null}
+        backIcon={<MenuOutlined className={styles['page-header__menu-icon']} />}
+        extra={[
+          <Navigation key="0" className={styles['mobile-hidden']} />,
+
           <Avatar
+            key="1"
             icon={<UserOutlined />}
             className={styles['page-header__avatar']}
-          />
-        </Popover>,
-      ]}
-    />
+          />,
+        ]}
+      />
+    </>
   );
 };

@@ -1,0 +1,29 @@
+.navigation-container{
+  position: sticky;
+  display: inline-flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 12px;
+
+  &__link{
+    font-size: 16px;
+    line-height: 24px;
+    padding-bottom: 8px;
+    border-bottom: 2px solid transparent;
+    font-weight: bold;
+    color: rgba(63, 69, 89, 1);
+    border-bottom: 2px solid transparent;
+    margin-right: 40px;
+  }
+
+  &__link:hover{
+    color: #fff;
+  }
+
+  &__link_active{
+    color: #fff;
+    border-bottom-color: rgba(89, 105, 247, 1);
+    cursor: default;
+  }
+
+}
