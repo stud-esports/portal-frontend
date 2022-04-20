@@ -8,8 +8,8 @@ interface Props {
 }
 
 export const MainLayout: FC<Props> = ({ children }) => (
-  <>
+  <div className={styles['content']}>
     <MainHeader />
     <main className={styles['main-container']}>{children}</main>
-  </>
+  </div>
 );
