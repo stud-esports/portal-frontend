@@ -1,6 +1,11 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
-import { fetchLogin, fetchLogout, fetchRefreshTokens } from './ActionCreators';
+import {
+  fetchLogout,
+  fetchRefreshTokens,
+  fetchSignin,
+  fetchSignup,
+} from './ActionCreators';
 
 export interface AuthState {
   access_token: string | null;
@@ -59,18 +64,36 @@ export const AuthSlice = createSlice({
       }
     });
 
-    builder.addCase(fetchLogin.fulfilled, (state, action) => {
+    builder.addCase(fetchSignup.fulfilled, (state, action) => {
       state.access_token = action.payload.access_token;
       state.errorLogin = null;
       state.isTryingToLogin = false;
       state.isFirstRefreshDone = true;
     });
 
-    builder.addCase(fetchLogin.pending, (state) => {
+    builder.addCase(fetchSignup.pending, (state) => {
       state.isTryingToLogin = true;
     });
 
-    builder.addCase(fetchLogin.rejected, (state, action) => {
+    builder.addCase(fetchSignup.rejected, (state, action) => {
+      state.isTryingToLogin = false;
+      state.errorLogin = action.error.message || null;
+      state.access_token = null;
+    });
+
+    builder.addCase(fetchSignin.fulfilled, (state, action) => {
+      state.access_token = action.payload.access_token;
+      state.errorLogin = null;
+      state.isTryingToLogin = false;
+      state.isFirstRefreshDone = true;
+    });
+
+    builder.addCase(fetchSignin.pending, (state) => {
+      state.isTryingToLogin = true;
+      state.errorLogin = null;
+    });
+
+    builder.addCase(fetchSignin.rejected, (state, action) => {
       state.isTryingToLogin = false;
       state.errorLogin = action.error.message || null;
       state.access_token = null;

@@ -1,0 +1,33 @@
+.avatar{
+  width: 45px;
+  height: 45px;
+  cursor: pointer;
+  margin: 0 !important;
+
+  &_auth{
+    border: 5px solid #4AA8FF;
+    box-shadow: 0px 0px 7px 2px rgba(74, 168, 255, 0.2);
+  }
+
+  &__icon{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    > svg{
+      width: 55%;
+      height: 55%;
+    }
+  }
+}
+
+.popup-content{
+  width: 240px;
+  display: flex;
+  flex-direction: column;
+
+  &__item {
+    margin-bottom: 10px;
+  }
+}
