@@ -1,0 +1,84 @@
+.form-container{
+  min-height: calc(100vh - 116px);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  padding-top: 40px;
+  width: 100%;
+
+  @media screen and (max-width: 1024px){
+    padding: 10px 24px 0 24px;
+    flex-direction: row;
+    justify-content: space-around;
+  }
+
+  .steps-container{
+    width: 100%;
+    margin-bottom: 20px;
+    @media screen and (max-width: 1024px){
+      width: fit-content;
+      margin-bottom: 0;
+      margin-right: 10px;
+    }
+
+    .step{
+      &__title{
+        font-size: 14px;
+        line-height: 16px;
+
+        @media screen and (max-width: 520px){
+          display: none;
+        }
+      }
+
+      &__sub-title{
+        @media screen and (max-width: 1024px){
+          display: none;
+        }
+      }
+
+    }
+
+  }
+
+  .form{
+    width: 100%;
+    max-width: 360px;
+
+    &__link{
+      width: 100%;
+      text-align: center;
+      display: block;
+      color: #5969F7;
+    }
+
+    &__item{
+      height: 54px;
+      overflow-y: hidden;
+      margin: 0 0 10px 0;
+    }
+  }
+}
+
+
+
+.custom-date-picker{
+  background: #000;
+
+  :global {
+    .ant-picker-today-btn, .ant-picker-header-view{
+      color: white;
+    }
+    .ant-picker-panel{
+      border: 0;
+    }
+    .ant-picker-header{
+      border-bottom: 1px solid #202431;
+    }
+    .ant-picker-footer{
+      border-bottom: 1px solid #202431;
+      border-top: 1px solid #202431;
+    }
+  }
+}

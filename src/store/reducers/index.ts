@@ -1,4 +1,5 @@
 import authReducer from './auth';
 import userReducer from './currentUser';
+import universitiesReducer from './univresities';
 
-export { authReducer, userReducer };
+export { authReducer, universitiesReducer, userReducer };

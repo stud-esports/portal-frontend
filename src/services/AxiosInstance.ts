@@ -3,7 +3,7 @@ import axios, { AxiosError } from 'axios';
 import { AppStore } from '../store';
 import { clearAuthState, setAccessToken } from '../store/reducers/auth';
 import { AuthService } from './auth';
-import { AUTH_URLS } from './auth/constants';
+import { BFF_AUTH_URLS } from './auth/constants';
 
 let store: AppStore;
 
@@ -12,6 +12,12 @@ export const injectStore = (_store: AppStore) => {
 };
 
 const axiosInstance = axios.create({
+  withCredentials: true,
+  headers: {
+    'Content-Type': 'application/json',
+  },
+});
+const serverAxiosInstance = axios.create({
   baseURL: process.env.NEXT_PUBLIC_API_URL,
   withCredentials: true,
   headers: {
@@ -30,11 +36,11 @@ axiosInstance.interceptors.response.use(
     }
 
     if (error.response.status === 403) {
-      if (error.response.config.url === AUTH_URLS.LOGIN) {
+      if (error.response.config.url === BFF_AUTH_URLS.SIGNIN) {
         return new Promise((_, reject) => {
           reject(error);
         });
-      } else if (error.response.config.url === AUTH_URLS.REFRESH_TOKENS) {
+      } else if (error.response.config.url === BFF_AUTH_URLS.REFRESH_TOKENS) {
         dispatch(clearAuthState());
         return new Promise((_, reject) => {
           reject(error);
@@ -59,4 +65,4 @@ axiosInstance.interceptors.response.use(
   },
 );
 
-export { axiosInstance };
+export { axiosInstance, serverAxiosInstance };

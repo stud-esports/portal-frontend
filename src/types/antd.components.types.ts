@@ -7,3 +7,11 @@ export interface MenuOnCLickEvent {
 }
 
 export type MenuCLickHandler = (event: MenuOnCLickEvent) => void;
+
+export interface FormFieldData {
+  name: string | number | (string | number)[];
+  value?: any;
+  touched?: boolean;
+  validating?: boolean;
+  errors?: string[];
+}

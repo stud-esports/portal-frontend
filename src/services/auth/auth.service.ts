@@ -2,32 +2,42 @@ import { AxiosResponse } from 'axios';
 
 import { User } from '../../models/User';
 import { axiosInstance } from '../AxiosInstance';
-import { AUTH_URLS } from './constants';
+import { BFF_AUTH_URLS } from './constants';
 import {
-  LoginResponse,
   LogoutResponse,
   RefreshTokensResponse,
+  SigninResponse,
+  SignupResponse,
+  UserCreationData,
 } from './responses.type';
 
 export class AuthService {
   static async refreshTokens(): Promise<AxiosResponse<RefreshTokensResponse>> {
-    return axiosInstance.get<RefreshTokensResponse>(AUTH_URLS.REFRESH_TOKENS);
+    return await axiosInstance.get<RefreshTokensResponse>(
+      BFF_AUTH_URLS.REFRESH_TOKENS,
+    );
   }
 
-  static async login(
+  static async signin(
     email: string,
     password: string,
-  ): Promise<AxiosResponse<LoginResponse>> {
-    return axiosInstance.post<LoginResponse>(AUTH_URLS.LOGIN, {
+  ): Promise<AxiosResponse<SigninResponse>> {
+    return await axiosInstance.post<SigninResponse>(BFF_AUTH_URLS.SIGNIN, {
       email,
       password,
     });
   }
 
+  static async signup(
+    data: UserCreationData,
+  ): Promise<AxiosResponse<SignupResponse>> {
+    return await axiosInstance.post<SignupResponse>(BFF_AUTH_URLS.SIGNUP, data);
+  }
+
   static async getUserInfoByToken(
     access_token: string,
   ): Promise<AxiosResponse<User>> {
-    return axiosInstance.get<User>(AUTH_URLS.USER_INFO_BY_TOKEN, {
+    return await axiosInstance.get<User>(BFF_AUTH_URLS.USER_INFO_BY_TOKEN, {
       headers: {
         Authorization: `Bearer ${access_token}`,
       },
@@ -35,6 +45,6 @@ export class AuthService {
   }
 
   static async logout(): Promise<AxiosResponse<LogoutResponse>> {
-    return axiosInstance.get<LogoutResponse>(AUTH_URLS.LOGOUT);
+    return await axiosInstance.get<LogoutResponse>(BFF_AUTH_URLS.LOGOUT);
   }
 }

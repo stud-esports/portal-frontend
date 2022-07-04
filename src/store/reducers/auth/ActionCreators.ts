@@ -2,9 +2,11 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 
 import { AuthService } from '../../../services';
 import {
-  LoginResponse,
   LogoutResponse,
   RefreshTokensResponse,
+  SigninResponse,
+  SignupResponse,
+  UserCreationData,
 } from '../../../services/auth/responses.type';
 import { RootState } from '../../index';
 import { clearUserState, setUser } from '../currentUser';
@@ -22,13 +24,27 @@ export const fetchRefreshTokens = createAsyncThunk<
   }
 });
 
-export const fetchLogin = createAsyncThunk<
-  LoginResponse,
+export const fetchSignin = createAsyncThunk<
+  SigninResponse,
   { email: string; password: string },
   { state: RootState }
->('auth/fetchLogin', async ({ email, password }, thunkAPI) => {
+>('auth/fetchSignin', async ({ email, password }, thunkAPI) => {
   try {
-    const response = await AuthService.login(email, password);
+    const response = await AuthService.signin(email, password);
+    thunkAPI.dispatch(setUser(response.data.user));
+    return response.data;
+  } catch (e) {
+    return thunkAPI.rejectWithValue('Tokens not loaded');
+  }
+});
+
+export const fetchSignup = createAsyncThunk<
+  SignupResponse,
+  UserCreationData,
+  { state: RootState }
+>('auth/fetchSignup', async (data, thunkAPI) => {
+  try {
+    const response = await AuthService.signup(data);
     thunkAPI.dispatch(setUser(response.data.user));
     return response.data;
   } catch (e) {

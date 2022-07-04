@@ -1,16 +1,24 @@
-import { MenuOutlined, UserOutlined } from '@ant-design/icons';
-import { Avatar, PageHeader } from 'antd';
+import { MenuOutlined } from '@ant-design/icons';
+import { PageHeader } from 'antd';
 import classNames from 'classnames';
-import { FC, useState } from 'react';
-import { useScrollData } from 'scroll-data-hook';
+import { useRouter } from 'next/router';
+import { FC, useEffect, useState } from 'react';
 
 import { Appear } from '../../animations';
 import { Logo, Navigation, SearchInput } from './components';
+import { Avatar } from './components/Avatar';
 import styles from './styles.module.scss';
 
 export const MainHeader: FC = () => {
   const [showBackground, setShowBackground] = useState(false);
-  const { position } = useScrollData();
+  const router = useRouter();
+  const [showAvatar, setShowAvatar] = useState(true);
+
+  useEffect(() => {
+    setShowAvatar(
+      !['/auth/sign-in', '/auth/sign-up'].includes(router.pathname),
+    );
+  }, [router.pathname]);
 
   return (
     <>
@@ -19,10 +27,7 @@ export const MainHeader: FC = () => {
       </Appear>
 
       <PageHeader
-        className={classNames(
-          styles['page-header'],
-          position.y > 0 ? styles['page-header_bg-dark'] : null,
-        )}
+        className={classNames(styles['page-header'])}
         title={<Logo className={styles['page-header__logo']} />}
         subTitle={
           <SearchInput
@@ -37,12 +42,7 @@ export const MainHeader: FC = () => {
         backIcon={<MenuOutlined className={styles['page-header__menu-icon']} />}
         extra={[
           <Navigation key="0" className={styles['mobile-hidden']} />,
-
-          <Avatar
-            key="1"
-            icon={<UserOutlined />}
-            className={styles['page-header__avatar']}
-          />,
+          showAvatar && <Avatar key="1" />,
         ]}
       />
     </>
