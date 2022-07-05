@@ -1,15 +1,15 @@
 import type { NextPage } from 'next';
 import Head from 'next/head';
 
-import { HomePage } from '../components/pages/Home';
+import { CommentUserPage } from '../../../components/pages/CommentUser';
 
 const Home: NextPage = () => {
   return (
     <>
       <Head>
-        <title>Новости и Статьи</title>
+        <title>Лосев Александр</title>
       </Head>
-      <HomePage />
+      <CommentUserPage />
     </>
   );
 };

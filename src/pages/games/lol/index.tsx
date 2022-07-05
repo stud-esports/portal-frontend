@@ -1,15 +1,15 @@
 import type { NextPage } from 'next';
 import Head from 'next/head';
 
-import { GamesListPage } from '../../components/pages/GamesList';
+import { LoLPage } from '../../../components/pages/LoL';
 
 const Games: NextPage = () => {
   return (
     <>
       <Head>
-        <title>Игры</title>
+        <title>LoL</title>
       </Head>
-      <GamesListPage />
+      <LoLPage />
     </>
   );
 };

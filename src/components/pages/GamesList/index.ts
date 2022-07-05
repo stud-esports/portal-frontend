@@ -1,0 +1,1 @@
+export { GamesListPage } from './GamesList';

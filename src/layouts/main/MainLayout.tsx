@@ -6,6 +6,7 @@ import { Loader } from '../../components/PlugScreens/Loader';
 import { useTypedDispatch, useTypedSelector } from '../../hooks/redux';
 import { fetchRefreshTokens } from '../../store/reducers/auth/ActionCreators';
 import { fetchCurrentUser } from '../../store/reducers/currentUser/ActionCreators';
+import { fetchNews } from '../../store/reducers/news/ActionCreators';
 import { fetchUniversities } from '../../store/reducers/univresities/ActionCreators';
 import styles from './styles.module.scss';
 
@@ -22,8 +23,9 @@ export const MainLayout: FC<Props> = ({ children }) => {
   const [showLoader, setShowLoader] = useState(true);
 
   useEffect(() => {
-    dispatch(fetchUniversities());
     dispatch(fetchRefreshTokens());
+    dispatch(fetchUniversities());
+    dispatch(fetchNews());
   }, []);
 
   useEffect(() => {
@@ -31,7 +33,7 @@ export const MainLayout: FC<Props> = ({ children }) => {
       dispatch(fetchCurrentUser());
     }
     if (isFirstRefreshDone && showLoader) {
-      setTimeout(() => setShowLoader(false), 1500);
+      setTimeout(() => setShowLoader(false), 1000);
     }
   }, [isFirstRefreshDone]);
 
