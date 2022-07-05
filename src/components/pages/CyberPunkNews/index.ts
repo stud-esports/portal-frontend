@@ -1,0 +1,1 @@
+export { CyberPunkNewsPage } from './CyberPunkNews';

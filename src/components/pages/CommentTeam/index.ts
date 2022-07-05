@@ -1,0 +1,1 @@
+export { CommentTeamPage } from './CommentTeam';

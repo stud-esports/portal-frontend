@@ -1,0 +1,1 @@
+export { LoLPage } from './LoL';

@@ -1,15 +1,15 @@
 import type { NextPage } from 'next';
 import Head from 'next/head';
 
-import { HomePage } from '../components/pages/Home';
+import { CommentTeamPage } from '../../../components/pages/CommentTeam';
 
 const Home: NextPage = () => {
   return (
     <>
       <Head>
-        <title>Новости и Статьи</title>
+        <title>Progafute Team</title>
       </Head>
-      <HomePage />
+      <CommentTeamPage />
     </>
   );
 };
